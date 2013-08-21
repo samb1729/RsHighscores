@@ -1,8 +1,8 @@
 require 'spec_helper'
-describe Highscores do
+describe Osrshighscores do
 		describe "#score" do
 				it "returns 0 for all lookup" do
-						lookup = Highscore.new
+						lookup = Osrshighscores.new
 						lambda { 1.time { lookup.total("Jebrim") } }
 						lookup.total.should == 2150
 				end

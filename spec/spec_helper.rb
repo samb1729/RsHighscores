@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
+require 'osrshighscores'
 
-require 'osrsgrabber'
 
 RSpec.configure do |config|
 		config.mock_with :rspec
