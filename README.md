@@ -1,6 +1,6 @@
 # Osrshighscores
 
-TODO: Write a gem description
+Easy to use gem for downloading and parsing Oldschool Runescape highscores
 
 ## Installation
 
