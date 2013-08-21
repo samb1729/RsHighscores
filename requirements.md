@@ -4,7 +4,8 @@ Current design plan. Subject to change at any time.
 
 ## Classes
 
-All classes will be in the ```Osrs``` module.
+All classes will be in the ```ruby
+Osrs``` module.
 
 ## Typical usage
 
