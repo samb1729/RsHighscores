@@ -1,5 +1,5 @@
-require "osrshighscores/version"
+%w(version player).each { |dep| require "osrshighscores/#{dep}" }
 
-module Osrshighscores
-  # Your code goes here...
+module Osrs
+  
 end

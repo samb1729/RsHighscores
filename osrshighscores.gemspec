@@ -5,7 +5,7 @@ require 'osrshighscores/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "osrshighscores"
-  spec.version       = Osrshighscores::VERSION
+  spec.version       = Osrs::VERSION
   spec.authors       = ["Sam Broughton", "Joshua Bell"]
   spec.email         = ["sam@26th-zerk.co.uk"]
   spec.description   = %q{Easy to use gem for downloading and parsing Oldschool Runescape highscores} 
