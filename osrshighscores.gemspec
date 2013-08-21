@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Osrshighscores::VERSION
   spec.authors       = ["Sam Broughton"]
   spec.email         = ["sam@26th-zerk.co.uk"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{Easy to use gem for downloading and parsing Oldschool Runescape highscores} 
+  spec.summary       = %q{OSRS Highscore Parser}
+  spec.homepage      = "https://github.com/sambooo/OSRSGrabber"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
