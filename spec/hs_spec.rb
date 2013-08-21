@@ -1,4 +1,5 @@
 require 'spec_helper'
+
 describe Osrshighscores do
 		describe "#score" do
 				it "returns 0 for all lookup" do
