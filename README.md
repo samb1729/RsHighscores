@@ -1,5 +1,7 @@
 # Osrshighscores
 
+[![Code Climate](https://codeclimate.com/github/sambooo/OSRSGrabber.png)](https://codeclimate.com/github/sambooo/OSRSGrabber)
+
 Easy to use gem for downloading and parsing Oldschool Runescape highscores. Inspired to some extent by [Partyhat](https://github.com/clooth/Partyhat)
 
 ## Installation
