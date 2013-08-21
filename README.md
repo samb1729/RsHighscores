@@ -1,6 +1,6 @@
 # Osrshighscores
 
-Easy to use gem for downloading and parsing Oldschool Runescape highscores
+Easy to use gem for downloading and parsing Oldschool Runescape highscores. Inspired to some extent by [Partyhat](https://github.com/clooth/Partyhat)
 
 ## Installation
 
