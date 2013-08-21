@@ -4,14 +4,14 @@ Current design plan. Subject to change at any time.
 
 ## Classes
 
-All classes will be in the ```Osrshighscores``` module.
+All classes will be in the ```Osrs``` module.
 
 ## Typical usage
 
 ```ruby
 require 'osrshighscores'
 
-player = Osrshighscores::Player.new "Foot"
-highscores = player.fetch_stats
+player = Osrs::Player.new "Foot"
+highscores = player.stats
 puts highscores[:hunter].level # => 99
 ```
