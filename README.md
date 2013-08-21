@@ -18,7 +18,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'osrshighscores'
+
+player = Osrs::Player.new "Foot"
+highscores = player.stats
+puts highscores[:hunter].level # => 99
+```
 
 ## Contributing
 
