@@ -4,5 +4,5 @@ require 'bundler/setup'
 require 'osrsgrabber'
 
 RSpec.configure do |config|
-		#stuff
+		config.mock_with :rspec
 end
