@@ -2,6 +2,20 @@ require 'spec_helper'
 
 describe Osrs::Player do
 		describe "name validation" do
+      context "valid names" do
+        it "ordinary name" do
+          lambda {
+            Osrs::Player.new "foot"
+          }.should_not raise_error
+        end
+
+        it "multiple spaces" do
+          lambda {
+            Osrs::Player.new "s u  o  m i"
+          }.should_not raise_error
+        end
+      end
+      
       context "errors" do
         it "invalid characters in name" do
           lambda {
@@ -27,19 +41,9 @@ describe Osrs::Player do
           }.should raise_error(Exception, "name starts/ends with a space character")
         end
       end
-
-      context "valid names" do
-        it "ordinary name" do
-          lambda {
-            Osrs::Player.new "foot"
-          }.should_not raise_error
-        end
-
-        it "multiple spaces" do
-          lambda {
-            Osrs::Player.new "s u  o  m i"
-          }.should_not raise_error
-        end
-      end
 		end
+
+    describe "highscore lookup" do
+
+    end
 end
