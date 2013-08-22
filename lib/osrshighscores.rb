@@ -1,4 +1,6 @@
-%w(version player).each { |dep| require "osrshighscores/#{dep}" }
+%w(version player stats).each do |dep|
+  require "osrshighscores/#{dep}"
+end
 
 module Osrs
   
