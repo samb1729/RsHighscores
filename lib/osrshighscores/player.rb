@@ -4,7 +4,7 @@ module Osrs
   class Player
     @@lookup_url = "http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player="
 
-    attr_reader :name, :raw_stats
+    attr_reader :name, :raw_stats, :stats
 
     def initialize name
       @name = name
@@ -21,9 +21,10 @@ module Osrs
     end
 
     def fetch_highscores
-      open(@@lookup_url + @name, "User-Agent" => "Ruby/OSRSGrabber") do |f|
-        @raw_stats = f.readlines.map &:chomp # Readlines preserves newlines??
-      end
+      f = open(@@lookup_url + @name, "User-Agent" => "Ruby/OSRSGrabber")
+      
+      @raw_stats = f.readlines.map &:chomp # Readlines preserves newlines??
+      @stats = Osrs::Stats.new @raw_stats
     end
   end
 end
