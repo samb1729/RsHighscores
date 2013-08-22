@@ -23,7 +23,7 @@ module Osrs
 
     def fetch_hiscores
       open(@@lookup_url + @name, "User-Agent" => "Ruby/OSRSGrabber") do |f|
-        @raw_stats = f.readlines
+        @raw_stats = f.readlines.map &:chomp # Readlines preserves newlines??
       end
     end
   end

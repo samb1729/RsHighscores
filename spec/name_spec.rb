@@ -52,6 +52,7 @@ describe Osrs::Player do
 
       player.raw_stats.should_not be_nil
       player.raw_stats.length.should_not eq(0)
+      player.raw_stats.each { |e| e.end_with?("\n").should be_false }
     end
 
     it "non-member/banned lookup" do
