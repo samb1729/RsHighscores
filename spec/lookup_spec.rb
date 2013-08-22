@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Osrs::Stats do
   player = Osrs::Player.new "jebrim"
   player.fetch_highscores
+  stats = Osrs::Stats.new player.raw_stats
 
   describe "raw highscore validation" do
     context "valid input" do
@@ -29,8 +30,6 @@ describe Osrs::Stats do
   end
 
   describe "stat parsing" do
-    stats = Osrs::Stats.new player.raw_stats
-
     it "parsed output length" do
       stats.stats.length.should eq(24)
     end
@@ -46,6 +45,34 @@ describe Osrs::Stats do
         skill.each do |elem|
           elem.should be_a(Numeric)
         end
+      end
+    end
+  end
+
+  describe "usability" do
+    it "stats 'hash' call" do
+      lambda {
+        stats[:overall]
+      }.should_not raise_error
+    end
+
+    it "stat arrays with convenience methods" do
+      stats.stats.each do |skill|
+        skill.rank.should be_a(Numeric)
+        skill.level.should be_a(Numeric)
+        skill.xp.should be_a(Numeric)
+      end
+    end
+
+    it "error on non-existant skill lookup" do
+      lambda {
+        stats[:foot]
+      }.should raise_error("non-existant skill lookup")
+    end
+
+    it "success on valid skill lookup" do
+      stats.skill_names.each do |name|
+        stats[name].should be_a(Array)
       end
     end
   end

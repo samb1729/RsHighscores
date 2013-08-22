@@ -14,18 +14,44 @@ module Osrs
       parse_stats
     end
 
+    def validate_raw_stats
+      raise "incorrect input length" unless @raw_stats.length == 39
+    end
+
     def parse_stats
       validate_raw_stats
 
       @stats = []
       @raw_stats.take(24).each do |line|
         raise "malformed raw stats" unless line =~ /\d+,\d+,\d+/
-        @stats << line.split(",").map(&:to_i)
+        stat = line.split(",").map(&:to_i)
+
+        class << stat
+          def method_missing name, *args
+            case name
+            when :rank
+              return self[0]
+            when :level
+              return self[1]
+            when :xp
+              return self[2]
+            end
+          end
+        end
+
+        @stats << stat
       end
     end
 
-    def validate_raw_stats
-      raise "incorrect input length" unless @raw_stats.length == 39
+    def skill_names
+      @@skills
+    end
+
+    def [] skill
+      skill = skill.to_s.capitalize
+      raise "non-existant skill lookup" unless @@skills.index(skill)
+
+      stats[@@skills.index(skill)]
     end
   end
 end
