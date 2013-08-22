@@ -47,7 +47,7 @@ describe Osrs::Player do
     it "member lookup" do
       player = Osrs::Player.new "jebrim" # Not Foot in case he cancels membership
       lambda {
-        player.fetch_hiscores
+        player.fetch_highscores
       }.should_not raise_error
 
       player.raw_stats.should_not be_nil
@@ -58,7 +58,7 @@ describe Osrs::Player do
     it "non-member/banned lookup" do
       player = Osrs::Player.new "smithking087" # Known banned player
       lambda {
-        player.fetch_hiscores
+        player.fetch_highscores
       }.should raise_error(OpenURI::HTTPError)
     end
   end

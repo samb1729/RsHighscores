@@ -8,7 +8,6 @@ module Osrs
 
     def initialize name
       @name = name
-
       validate_name
     end
 
@@ -21,7 +20,7 @@ module Osrs
       raise "name starts/ends with a space character" if (name[0] + name[-1]) =~ /[_\- ]/
     end
 
-    def fetch_hiscores
+    def fetch_highscores
       open(@@lookup_url + @name, "User-Agent" => "Ruby/OSRSGrabber") do |f|
         @raw_stats = f.readlines.map &:chomp # Readlines preserves newlines??
       end
