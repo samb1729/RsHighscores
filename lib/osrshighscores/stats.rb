@@ -20,7 +20,7 @@ module Osrs
       @stats = []
       @raw_stats.take(24).each do |line|
         raise "malformed raw stats" unless line =~ /\d+,\d+,\d+/
-        @stats << []
+        @stats << line.split(",").map(&:to_i)
       end
     end
 
