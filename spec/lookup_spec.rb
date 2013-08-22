@@ -20,4 +20,14 @@ describe Osrs::Stats do
       end
     end
   end
+
+  describe "stat parsing" do
+    it "parsed output length" do
+      player = Osrs::Player.new "jebrim"
+      player.fetch_highscores
+
+      stats = Osrs::Stats.new player.raw_stats
+      stats.stats.length.should eq(24)
+    end
+  end
 end
