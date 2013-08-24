@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 describe Osrs::Stats do
-  player = Osrs::Player.new "jebrim"
-  player.fetch_highscores
+  player = Osrs::Player.new "jebrim", :force
   stats = Osrs::Stats.new player.raw_stats
 
   describe "raw highscore validation" do

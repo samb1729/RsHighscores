@@ -1,6 +1,6 @@
 module Osrs
   class Stats
-    attr_accessor :stats
+    attr_accessor :stats, :raw_stats, :created_at
 
     @@skills = %w(Overall Attack Defence Strength
                   Hitpoints Ranged Prayer Magic
@@ -11,6 +11,8 @@ module Osrs
 
     def initialize raw_stats
       @raw_stats = raw_stats
+      @created_at = Time.now
+
       parse_stats
     end
 

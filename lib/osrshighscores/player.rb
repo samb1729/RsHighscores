@@ -6,9 +6,11 @@ module Osrs
 
     attr_reader :name, :raw_stats, :stats
 
-    def initialize name
+    def initialize name, force = :no_force
       @name = name
       validate_name
+
+      fetch_highscores if force == :force
     end
 
     def validate_name
