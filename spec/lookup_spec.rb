@@ -30,7 +30,7 @@ describe Osrs::Stats do
 
   describe "stat parsing" do
     it "parsed output length" do
-      stats.stats.length.should eq(24)
+      stats.stats.length.should eq(stats.skill_names.count)
     end
 
     it "stats in groups of three" do
