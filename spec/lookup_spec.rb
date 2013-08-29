@@ -74,5 +74,11 @@ describe Osrs::Stats do
         stats[name].should be_a(Array)
       end
     end
+
+    it "missing method call" do
+      stats.skill_names.each do |name|
+        stats.send(name.to_sym).should eq(stats[name])
+      end
+    end
   end
 end

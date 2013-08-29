@@ -25,7 +25,7 @@ require 'osrshighscores'
 
 player = Osrs::Player.new "Foot"
 highscores = player.stats
-puts highscores[:hunter].level # => 99
+puts highscores.hunter.level # => 99
 ```
 
 ## Contributing

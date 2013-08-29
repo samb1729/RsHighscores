@@ -55,5 +55,9 @@ module Osrs
 
       stats[@@skills.index(skill)]
     end
+
+    def method_missing name, *args
+      return self[name] if @@skills.include? name.to_s
+    end
   end
 end
