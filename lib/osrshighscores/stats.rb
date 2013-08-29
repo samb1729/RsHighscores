@@ -1,6 +1,6 @@
 module Osrs
   class Stats
-    attr_accessor :stats, :raw_stats, :created_at
+    attr_accessor :stats, :raw_stats
 
     @@skills = %w(Overall Attack Defence Strength
                   Hitpoints Ranged Prayer Magic
@@ -11,7 +11,6 @@ module Osrs
 
     def initialize raw_stats
       @raw_stats = raw_stats
-      @created_at = Time.now
 
       parse_stats
     end
@@ -24,7 +23,7 @@ module Osrs
       validate_raw_stats
 
       @stats = []
-      @raw_stats.take(24).each do |line|
+      @raw_stats.take(@@skills.count).each do |line|
         raise "malformed raw stats" unless line =~ /\d+,\d+,\d+/
         stat = line.split(",").map(&:to_i)
 
