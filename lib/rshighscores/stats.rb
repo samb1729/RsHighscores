@@ -1,22 +1,24 @@
 module RsHighscores
   class Stats
-    attr_accessor :stats, :raw_stats
-
     @@skills = %w(Overall Attack Defence Strength
                   Hitpoints Ranged Prayer Magic
                   Cooking Woodcutting Fletching Fishing
                   Firemaking Crafting Smithing Mining
                   Herblore Agility Thieving Slayer
-                  Farming Runecrafting Hunter Construction)
+                  Farming Runecrafting Hunter Construction
+                  Summoning Dungeoneering Divination)
+
+    attr_accessor :stats, :raw_stats
 
     def initialize raw_stats
+      @expected_stat_count = 44
       @raw_stats = raw_stats
 
       parse_stats
     end
 
     def validate_raw_stats
-      raise "incorrect input length" unless @raw_stats.length == 39
+      raise "incorrect input length" unless @raw_stats.length == @expected_stat_count
     end
 
     def parse_stats

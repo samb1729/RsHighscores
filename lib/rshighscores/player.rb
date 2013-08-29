@@ -2,7 +2,7 @@ require 'open-uri'
 
 module RsHighscores
   class Player
-    @@lookup_url = "http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player="
+    @@lookup_url = "http://hiscore.runescape.com/index_lite.ws?player="
 
     attr_reader :name, :raw_stats, :stats
 

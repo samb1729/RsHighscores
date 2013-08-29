@@ -45,7 +45,7 @@ describe RsHighscores::Player do
 
   describe "highscore lookup" do
     it "member lookup" do
-      player = RsHighscores::Player.new "jebrim", :force # Not Foot in case he cancels membership
+      player = RsHighscores::Player.new "jake", :force # Not Foot in case he cancels membership
 
       lambda {
         player.fetch_highscores

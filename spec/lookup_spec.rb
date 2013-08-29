@@ -1,14 +1,16 @@
 require 'spec_helper'
 
 describe RsHighscores::Stats do
-  player = RsHighscores::Player.new "jebrim", :force
-  stats = RsHighscores::Stats.new player.raw_stats
+  before :all do
+    @player = RsHighscores::Player.new "jake", :force
+    @stats = RsHighscores::Stats.new @player.raw_stats
+  end
 
   describe "raw highscore validation" do
     context "valid input" do
       it "correct input length" do
         lambda {
-          stats = RsHighscores::Stats.new player.raw_stats
+         @stats = RsHighscores::Stats.new @player.raw_stats
         }.should_not raise_error
       end
     end
@@ -22,7 +24,7 @@ describe RsHighscores::Stats do
 
       it "malformed input line" do
         lambda {
-          RsHighscores::Stats.new Array.new(39) { "" }
+          RsHighscores::Stats.new Array.new(44) { "" }
         }.should raise_error("malformed raw stats")
       end
     end
@@ -30,17 +32,17 @@ describe RsHighscores::Stats do
 
   describe "stat parsing" do
     it "parsed output length" do
-      stats.stats.length.should eq(stats.skill_names.count)
+     @stats.stats.length.should eq(@stats.skill_names.count)
     end
 
     it "stats in groups of three" do
-      stats.stats.each do |skill|
+     @stats.stats.each do |skill|
         skill.length.should eq(3)
       end
     end
 
     it "stats converted to ints" do
-      stats.stats.each do |skill|
+     @stats.stats.each do |skill|
         skill.each do |elem|
           elem.should be_a(Numeric)
         end
@@ -51,12 +53,12 @@ describe RsHighscores::Stats do
   describe "usability" do
     it "stats 'hash' call" do
       lambda {
-        stats[:overall]
+       @stats[:overall]
       }.should_not raise_error
     end
 
     it "stat arrays with convenience methods" do
-      stats.stats.each do |skill|
+     @stats.stats.each do |skill|
         skill.rank.should be_a(Numeric)
         skill.level.should be_a(Numeric)
         skill.xp.should be_a(Numeric)
@@ -65,19 +67,19 @@ describe RsHighscores::Stats do
 
     it "error on non-existant skill lookup" do
       lambda {
-        stats[:foot]
+       @stats[:foot]
       }.should raise_error("non-existant skill lookup")
     end
 
     it "success on valid skill lookup" do
-      stats.skill_names.each do |name|
-        stats[name].should be_a(Array)
+      @stats.skill_names.each do |name|
+        @stats[name].should be_a(Array)
       end
     end
 
     it "missing method call" do
-      stats.skill_names.each do |name|
-        stats.send(name.to_sym).should eq(stats[name])
+      @stats.skill_names.each do |name|
+        @stats.send(name.to_sym).should eq(@stats[name])
       end
     end
   end
