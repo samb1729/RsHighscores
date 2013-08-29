@@ -1,4 +1,4 @@
-%w(player stats comparison).each do |dep|
+%w(player stats).each do |dep|
   require "osrshighscores/#{dep}"
 end
 
