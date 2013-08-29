@@ -1,4 +1,4 @@
-module Osrs
+module RsHighscores
   class Stats
     attr_accessor :stats, :raw_stats
 

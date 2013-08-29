@@ -1,6 +1,6 @@
 require 'open-uri'
 
-module Osrs
+module RsHighscores
   class Player
     @@lookup_url = "http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player="
 
@@ -23,10 +23,10 @@ module Osrs
     end
 
     def fetch_highscores
-      f = open(@@lookup_url + @name, "User-Agent" => "Ruby/OSRSGrabber")
+      f = open(@@lookup_url + @name, "User-Agent" => "Ruby/RsHighscoresGrabber")
       
       @raw_stats = f.readlines.map &:chomp # Readlines preserves newlines??
-      @stats = Osrs::Stats.new @raw_stats
+      @stats = RsHighscores::Stats.new @raw_stats
     end
   end
 end

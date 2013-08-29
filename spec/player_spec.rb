@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe Osrs::Player do
+describe RsHighscores::Player do
 	describe "name validation" do
     context "valid names" do
       it "ordinary name" do
         lambda {
-          Osrs::Player.new "foot"
+          RsHighscores::Player.new "foot"
         }.should_not raise_error
       end
 
       it "multiple spaces" do
         lambda {
-          Osrs::Player.new "s u  o  m i"
+          RsHighscores::Player.new "s u  o  m i"
         }.should_not raise_error
       end
     end
@@ -19,25 +19,25 @@ describe Osrs::Player do
     context "errors" do
       it "invalid characters in name" do
         lambda {
-          Osrs::Player.new "@£$%^&"
+          RsHighscores::Player.new "@£$%^&"
         }.should raise_error(Exception, "invalid characters in name")
       end
 
       it "name too long" do
         lambda {
-          Osrs::Player.new "abcdef123456x"
+          RsHighscores::Player.new "abcdef123456x"
         }.should raise_error(Exception, "name too long")
       end
 
       it "name too short" do
         lambda {
-          Osrs::Player.new ""
+          RsHighscores::Player.new ""
         }.should raise_error(Exception, "name too short")
       end
 
       it "name starts/ends with space character" do
         lambda {
-          Osrs::Player.new "_heh_"
+          RsHighscores::Player.new "_heh_"
         }.should raise_error(Exception, "name starts/ends with a space character")
       end
     end
@@ -45,7 +45,7 @@ describe Osrs::Player do
 
   describe "highscore lookup" do
     it "member lookup" do
-      player = Osrs::Player.new "jebrim", :force # Not Foot in case he cancels membership
+      player = RsHighscores::Player.new "jebrim", :force # Not Foot in case he cancels membership
 
       lambda {
         player.fetch_highscores
@@ -55,12 +55,12 @@ describe Osrs::Player do
       player.raw_stats.length.should_not eq(0)
       player.raw_stats.each { |e| e.end_with?("\n").should be_false }
 
-      player.stats.should be_a(Osrs::Stats)
+      player.stats.should be_a(RsHighscores::Stats)
     end
 
     it "non-member/banned lookup" do
       lambda {
-        Osrs::Player.new "smithking087", :force # Known banned player
+        RsHighscores::Player.new "smithking087", :force # Known banned player
       }.should raise_error(OpenURI::HTTPError)
     end
   end

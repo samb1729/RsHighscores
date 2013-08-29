@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'osrshighscores'
+require 'rshighscores'
 
 
 RSpec.configure do |config|

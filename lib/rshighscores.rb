@@ -1,7 +1,7 @@
 %w(player stats).each do |dep|
-  require "osrshighscores/#{dep}"
+  require "rshighscores/#{dep}"
 end
 
-module Osrs
+module RsHighscores
   VERSION = "1.0.0"
 end

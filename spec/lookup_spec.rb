@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe Osrs::Stats do
-  player = Osrs::Player.new "jebrim", :force
-  stats = Osrs::Stats.new player.raw_stats
+describe RsHighscores::Stats do
+  player = RsHighscores::Player.new "jebrim", :force
+  stats = RsHighscores::Stats.new player.raw_stats
 
   describe "raw highscore validation" do
     context "valid input" do
       it "correct input length" do
         lambda {
-          stats = Osrs::Stats.new player.raw_stats
+          stats = RsHighscores::Stats.new player.raw_stats
         }.should_not raise_error
       end
     end
@@ -16,13 +16,13 @@ describe Osrs::Stats do
     context "invalid input" do
       it "incorrect input length" do
         lambda {
-          Osrs::Stats.new []
+          RsHighscores::Stats.new []
         }.should raise_error("incorrect input length")
       end
 
       it "malformed input line" do
         lambda {
-          Osrs::Stats.new Array.new(39) { "" }
+          RsHighscores::Stats.new Array.new(39) { "" }
         }.should raise_error("malformed raw stats")
       end
     end

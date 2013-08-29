@@ -1,15 +1,15 @@
 # encoding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'osrshighscores'
+require 'rshighscores'
 
 Gem::Specification.new do |spec|
-  spec.name          = "osrshighscores"
-  spec.version       = Osrs::VERSION
+  spec.name          = "rshighscores"
+  spec.version       = RsHighscores::VERSION
   spec.authors       = ["Sam Broughton", "Joshua Bell"]
   spec.email         = ["sam@26th-zerk.co.uk"]
-  spec.description   = %q{Easy to use gem for downloading and parsing Oldschool Runescape highscores} 
-  spec.summary       = %q{OSRS Highscore Parser}
+  spec.description   = %q{Easy to use gem for downloading and parsing Runescape highscores} 
+  spec.summary       = %q{RS Highscore Parser}
   spec.homepage      = "https://github.com/sambooo/OSRSGrabber"
   spec.license       = "MIT"
 
