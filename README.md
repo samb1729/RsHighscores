@@ -4,7 +4,17 @@
 
 Easy to use gem for downloading and parsing Runescape highscores. Inspired to some extent by [Partyhat](https://github.com/clooth/Partyhat)
 
-This gem was previously called `osrshighscores` and only worked with Oldschool Runescape. The current version has been renamed to reflect the future version-agnostic highscore parsing that the gem will do. Currently, there is no support for Oldschool Runescape at all. Version 1.x should be used if that is required until 3.x is released.
+## Rename and compatibility changes
+
+This gem was previously called `osrshighscores` and only worked with Oldschool Runescape. The current version has been renamed to reflect the future version-agnostic highscore parsing that the gem will do. Currently, there is no support for Oldschool Runescape at all.
+
+### But what if I want the Oldschool Runescape version?
+
+Don't worry, it's still around. It currently resides in its own branch, `version-1` and will still function as before. I intend to merge the two versions later on for ease of development and use so keep an eye out for version 3.x.
+
+### Why the change at all?
+
+I was asked to port the gem to Runescape 3 by a friend. I figured it would be better to immediately roll-out a working version and then work on merging branches later.
 
 ## Installation
 
