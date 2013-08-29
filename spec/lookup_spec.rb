@@ -77,9 +77,19 @@ describe RsHighscores::Stats do
       end
     end
 
+    it "skill_names output" do
+      @stats.skill_names.should eq(%w(Overall Attack Defence Strength
+                                      Hitpoints Ranged Prayer Magic
+                                      Cooking Woodcutting Fletching Fishing
+                                      Firemaking Crafting Smithing Mining
+                                      Herblore Agility Thieving Slayer
+                                      Farming Runecrafting Hunter Construction
+                                      Summoning Dungeoneering Divination))
+    end
+
     it "missing method call" do
       @stats.skill_names.each do |name|
-        @stats.send(name.to_sym).should eq(@stats[name])
+        @stats.send(name).should eq(@stats[name])
       end
     end
   end
