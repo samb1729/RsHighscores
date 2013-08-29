@@ -87,9 +87,15 @@ describe RsHighscores::Stats do
                                       Summoning Dungeoneering Divination))
     end
 
+    it "attempting to call a skill name that doesn't exist" do
+      lambda {
+        @stats.not_a_skill
+      }.should raise_error
+    end
+
     it "missing method call" do
       @stats.skill_names.each do |name|
-        @stats.send(name).should eq(@stats[name])
+        @stats.send(name.downcase).should eq(@stats[name])
       end
     end
   end

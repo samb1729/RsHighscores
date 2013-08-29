@@ -58,7 +58,8 @@ module RsHighscores
     end
 
     def method_missing name, *args
-      return self[name] if @@skills.include? name.to_s
+      return self[name] if skill_names.include? name.to_s.capitalize
+      raise NoMethodError
     end
   end
 end
