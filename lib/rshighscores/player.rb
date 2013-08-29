@@ -25,7 +25,7 @@ module RsHighscores
     def fetch_highscores
       f = open(@@lookup_url + @name, "User-Agent" => "Ruby/RsHighscoresGrabber")
       
-      @raw_stats = f.readlines.map &:chomp # Readlines preserves newlines??
+      @raw_stats = f.readlines.map &:chomp # readlines preserves newlines??
       @stats = RsHighscores::Stats.new @raw_stats
     end
   end
