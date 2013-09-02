@@ -6,11 +6,7 @@ Easy to use gem for downloading and parsing Runescape highscores. Inspired to so
 
 ## Rename and compatibility changes
 
-This gem was previously called `osrshighscores` and only worked with Oldschool Runescape. The current version has been renamed to reflect the future version-agnostic highscore parsing that the gem will do. Currently, there is no support for Oldschool Runescape at all.
-
-### But what if I want the Oldschool Runescape version?
-
-Don't worry, it's still around. It currently resides in its own branch, `version-1` and will still function as before. I intend to merge the two versions later on for ease of development and use so keep an eye out for version 3.x.
+This gem was previously called `osrshighscores` and only worked with Oldschool Runescape. The current version has been renamed to reflect the future version-agnostic highscore parsing that the gem will do. As of version 2.1.0, Oldschool Runescape is supported alongside Runescape 3. There are aliases in place to make code from 1.x work without issue in 2.1.x onwards, so if you were using 1.x you need not change anything.
 
 ### Why the change at all?
 
@@ -28,16 +24,20 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install highscores
+    $ gem install rshighscores
 
 ## Usage
 
 ```ruby
 require 'rshighscores'
 
-player = RsHighscores::Player.new "Foot"
-highscores = player.stats
+foot = RsHighscores::Player.new "Foot"
+highscores = foot.stats
 puts highscores.hunter.level # => 99
+
+jebrim = OSRS::Player.new "Jebrim" # RsHighscores::OldSchool::Player would work too
+highscores = jebrim.stats
+puts highscores.agility.level # => 99
 ```
 
 ## Contributing
