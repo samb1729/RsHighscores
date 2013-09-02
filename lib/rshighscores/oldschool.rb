@@ -1,7 +1,11 @@
-module RsHighscores::Oldschool
-  class Player
-    
+module RsHighscores
+  module OldSchool
+    class Player
+      
+    end
   end
 end
 
-Oldschool::Player = RsHighscores::Oldschool::Player
+module OSRS
+  Player = RsHighscores::OldSchool::Player
+end
