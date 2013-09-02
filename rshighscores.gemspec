@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["sam@26th-zerk.co.uk"]
   spec.description   = %q{Easy to use gem for downloading and parsing Runescape highscores} 
   spec.summary       = %q{RS Highscore Parser}
-  spec.homepage      = "https://github.com/sambooo/OSRSGrabber"
+  spec.homepage      = "https://github.com/sambooo/RsHighscores"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
