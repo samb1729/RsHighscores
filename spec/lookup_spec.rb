@@ -32,7 +32,7 @@ describe RsHighscores::Stats do
 
   describe "stat parsing" do
     it "parsed output length" do
-     @stats.stats.length.should eq(@stats.skill_names.count)
+     @stats.stats.length.should eq(RsHighscores::Stats::Skills.count)
     end
 
     it "stats in groups of three" do
@@ -72,13 +72,13 @@ describe RsHighscores::Stats do
     end
 
     it "success on valid skill lookup" do
-      @stats.skill_names.each do |name|
+      RsHighscores::Stats::Skills.each do |name|
         @stats[name].should be_a(Array)
       end
     end
 
     it "skill_names output" do
-      @stats.skill_names.should eq(%w(Overall Attack Defence Strength
+      RsHighscores::Stats::Skills.should eq(%w(Overall Attack Defence Strength
                                       Hitpoints Ranged Prayer Magic
                                       Cooking Woodcutting Fletching Fishing
                                       Firemaking Crafting Smithing Mining
@@ -94,7 +94,7 @@ describe RsHighscores::Stats do
     end
 
     it "missing method call" do
-      @stats.skill_names.each do |name|
+      RsHighscores::Stats::Skills.each do |name|
         @stats.send(name.downcase).should eq(@stats[name])
       end
     end

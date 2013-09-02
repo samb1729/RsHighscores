@@ -1,6 +1,6 @@
 module RsHighscores
   class Stats
-    @@skills = %w(Overall Attack Defence Strength
+    Skills = %w(Overall Attack Defence Strength
                   Hitpoints Ranged Prayer Magic
                   Cooking Woodcutting Fletching Fishing
                   Firemaking Crafting Smithing Mining
@@ -8,24 +8,26 @@ module RsHighscores
                   Farming Runecrafting Hunter Construction
                   Summoning Dungeoneering Divination)
 
+    ExpectedStatCount = 44
+    ActualStatCount = 27
+
     attr_accessor :stats, :raw_stats
 
     def initialize raw_stats
-      @expected_stat_count = 44
       @raw_stats = raw_stats
 
       parse_stats
     end
 
     def validate_raw_stats
-      raise "incorrect input length" unless @raw_stats.length == @expected_stat_count
+      raise "incorrect input length" unless @raw_stats.length == ExpectedStatCount
     end
 
     def parse_stats
       validate_raw_stats
 
       @stats = []
-      @raw_stats.take(@@skills.count).each do |line|
+      @raw_stats.take(ActualStatCount).each do |line|
         raise "malformed raw stats" unless line =~ /\d+,\d+,\d+/
         stat = line.split(",").map(&:to_i)
 
@@ -46,19 +48,15 @@ module RsHighscores
       end
     end
 
-    def skill_names
-      @@skills
-    end
-
     def [] skill
       skill = skill.to_s.capitalize
-      raise "non-existant skill lookup" unless @@skills.index(skill)
+      raise "non-existant skill lookup" unless Skills.index(skill)
 
-      stats[@@skills.index(skill)]
+      stats[Skills.index(skill)]
     end
 
     def method_missing name, *args
-      return self[name] if skill_names.include? name.to_s.capitalize
+      return self[name] if Skills.include? name.to_s.capitalize
       raise NoMethodError
     end
   end
