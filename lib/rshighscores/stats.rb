@@ -20,14 +20,14 @@ module RsHighscores
     end
 
     def validate_raw_stats
-      raise "incorrect input length" unless @raw_stats.length == ExpectedStatCount
+      raise "incorrect input length" unless @raw_stats.length == self.class::ExpectedStatCount
     end
 
     def parse_stats
       validate_raw_stats
 
       @stats = []
-      @raw_stats.take(ActualStatCount).each do |line|
+      @raw_stats.take(self.class::ActualStatCount).each do |line|
         raise "malformed raw stats" unless line =~ /\d+,\d+,\d+/
         stat = line.split(",").map(&:to_i)
 
@@ -50,9 +50,9 @@ module RsHighscores
 
     def [] skill
       skill = skill.to_s.capitalize
-      raise "non-existant skill lookup" unless Skills.index(skill)
+      raise "non-existant skill lookup" unless self.class::Skills.index(skill)
 
-      stats[Skills.index(skill)]
+      stats[self.class::Skills.index(skill)]
     end
 
     def method_missing name, *args

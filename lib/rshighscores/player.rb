@@ -2,6 +2,9 @@ require 'open-uri'
 
 module RsHighscores
   class Player
+    LookupUrl = "http://hiscore.runescape.com/index_lite.ws?player="
+    StatClass = RsHighscores::Stats
+
     attr_reader :name, :raw_stats, :stats
 
     def initialize name, force = :no_force
@@ -21,10 +24,10 @@ module RsHighscores
     end
 
     def fetch_highscores
-      f = open("http://hiscore.runescape.com/index_lite.ws?player=" + @name, "User-Agent" => "Ruby/RsHighscoresGrabber")
+      f = open(self.class::LookupUrl + @name, "User-Agent" => "Ruby/RsHighscoresGrabber")
       
       @raw_stats = f.readlines.map &:chomp # readlines preserves newlines??
-      @stats = RsHighscores::Stats.new @raw_stats
+      @stats = self.class::StatClass.new @raw_stats
     end
   end
 end
