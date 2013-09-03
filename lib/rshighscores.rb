@@ -1,4 +1,4 @@
-%w(player stats oldschool).each do |dep|
+%w(stats player oldschool).each do |dep|
   require "rshighscores/#{dep}"
 end
 
