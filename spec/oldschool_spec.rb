@@ -24,7 +24,7 @@ describe RsHighscores::OldSchool::Player do
 
     it "individual skill lookup" do
       @stats.stats.each do |stat|
-        stat.should be_a(Array)
+        stat.should be_a(RsHighscores::Stat)
         stat.each do |elem|
           elem.should be_a(Numeric)
         end
@@ -33,7 +33,7 @@ describe RsHighscores::OldSchool::Player do
 
     it "named stat lookup" do
       OSRS::Stats::Skills.each do |skill|
-        @stats.send(skill.to_sym).should be_a(Array)
+        @stats.send(skill.to_sym).should be_a(RsHighscores::Stat)
       end
     end
   end

@@ -29,20 +29,7 @@ module RsHighscores
       @stats = []
       @raw_stats.take(self.class::ActualStatCount).each do |line|
         raise "malformed raw stats" unless line =~ /\d+,\d+,\d+/
-        stat = line.split(",").map(&:to_i)
-
-        class << stat
-          def method_missing name, *args
-            case name
-            when :rank
-              return self[0]
-            when :level
-              return self[1]
-            when :xp
-              return self[2]
-            end
-          end
-        end
+        stat = Stat.new line.split(",").map(&:to_i)
 
         @stats << stat
       end
@@ -58,6 +45,34 @@ module RsHighscores
     def method_missing name, *args
       return self[name] if Skills.include? name.to_s.capitalize
       raise NoMethodError
+    end
+  end
+
+  class Stat
+    attr_reader :backing_array
+
+    def initialize backing_array
+      @backing_array = backing_array
+    end
+
+    def length
+      backing_array.length
+    end
+
+    def each &block
+      backing_array.each &block
+    end
+
+    def rank
+      backing_array[0]
+    end
+
+    def level
+      backing_array[1]
+    end
+
+    def xp
+      backing_array[2]
     end
   end
 end

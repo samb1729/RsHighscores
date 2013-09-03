@@ -73,7 +73,7 @@ describe RsHighscores::Stats do
 
     it "success on valid skill lookup" do
       RsHighscores::Stats::Skills.each do |name|
-        @stats[name].should be_a(Array)
+        @stats[name].should be_a(RsHighscores::Stat)
       end
     end
 
