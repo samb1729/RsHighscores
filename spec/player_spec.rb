@@ -14,6 +14,12 @@ describe RsHighscores::Player do
           RsHighscores::Player.new "s u  o  m i"
         }.should_not raise_error
       end
+
+      it "spaces being replaced" do
+        lambda {
+          RsHighscores::Player.new "samb o", :force
+        }.should_not raise_error
+      end
     end
     
     context "errors" do

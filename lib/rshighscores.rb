@@ -3,7 +3,7 @@
 end
 
 module RsHighscores
-  VERSION = "2.1.3"
+  VERSION = "2.1.2"
 end
 
 module OSRS
