@@ -17,7 +17,7 @@ describe RsHighscores::Player do
 
       it "spaces being replaced" do
         lambda {
-          RsHighscores::Player.new "samb o", :force
+          RsHighscores::Player.new "samb o", force: true
         }.should_not raise_error
       end
     end
@@ -51,7 +51,7 @@ describe RsHighscores::Player do
 
   describe "highscore lookup" do
     it "member lookup" do
-      player = RsHighscores::Player.new "jake", :force # Not Foot in case he cancels membership
+      player = RsHighscores::Player.new "jake", force: true # Not Foot in case he cancels membership
 
       lambda {
         player.fetch_highscores
@@ -66,7 +66,7 @@ describe RsHighscores::Player do
 
     it "non-member/banned lookup" do
       lambda {
-        RsHighscores::Player.new "smithking087", :force # Known banned player
+        RsHighscores::Player.new "smithking087", force: true # Known banned player
       }.should raise_error(OpenURI::HTTPError)
     end
   end

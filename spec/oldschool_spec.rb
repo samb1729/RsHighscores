@@ -9,7 +9,7 @@ describe RsHighscores::OldSchool::Player do
 
   context "usability" do
     before :all do
-      @player = OSRS::Player.new "jebrim", :force
+      @player = OSRS::Player.new "jebrim", force: true
       @stats = OSRS::Stats.new @player.raw_stats
     end
 

@@ -7,11 +7,11 @@ module RsHighscores
 
     attr_reader :name, :raw_stats, :stats
 
-    def initialize name, force = :no_force
+    def initialize name, params = {}
       @name = name
       validate_name
 
-      fetch_highscores if force == :force
+      fetch_highscores if params[:force]
     end
 
     def validate_name

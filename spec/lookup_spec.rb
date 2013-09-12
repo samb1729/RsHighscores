@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RsHighscores::Stats do
   before :all do
-    @player = RsHighscores::Player.new "jake", :force
+    @player = RsHighscores::Player.new "jake", force: true
     @stats = RsHighscores::Stats.new @player.raw_stats
   end
 
