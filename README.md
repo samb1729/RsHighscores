@@ -31,11 +31,11 @@ Or install it yourself as:
 ```ruby
 require 'rshighscores'
 
-foot = RsHighscores::Player.new "Foot"
+foot = RsHighscores::Player.new "Foot", force: true
 highscores = foot.stats
 puts highscores.hunter.level # => 99
 
-jebrim = OSRS::Player.new "Jebrim" # RsHighscores::OldSchool::Player would work too
+jebrim = OSRS::Player.new "Jebrim", force: true # RsHighscores::OldSchool::Player would work too
 highscores = jebrim.stats
 puts highscores.agility.level # => 99
 ```
