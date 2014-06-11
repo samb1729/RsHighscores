@@ -26,7 +26,7 @@ module RsHighscores
     def fetch_highscores
       safe_name = @name.gsub " ", "%20"
       f = open(self.class::LookupUrl + safe_name, "User-Agent" => "Ruby/RsHighscoresGrabber")
-      
+
       @raw_stats = f.readlines.map &:chomp # readlines preserves newlines??
       @stats = self.class::StatClass.new @raw_stats
     end

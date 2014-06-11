@@ -19,12 +19,12 @@ describe RsHighscores::Stats do
       it "incorrect input length" do
         lambda {
           RsHighscores::Stats.new []
-        }.should raise_error("incorrect input length")
+        }.should raise_error(/incorrect input length/)
       end
 
       it "malformed input line" do
         lambda {
-          RsHighscores::Stats.new Array.new(44) { "" }
+          RsHighscores::Stats.new Array.new(49) { "" }
         }.should raise_error("malformed raw stats")
       end
     end

@@ -3,7 +3,7 @@ module RsHighscores
     class Stats < RsHighscores::Stats
       Skills = RsHighscores::Stats::Skills.take(24)
 
-      ExpectedStatCount = 39
+      ExpectedStatCount = 24
       ActualStatCount = 24
     end
 

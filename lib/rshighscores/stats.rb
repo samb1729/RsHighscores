@@ -8,7 +8,7 @@ module RsHighscores
                   Farming Runecrafting Hunter Construction
                   Summoning Dungeoneering Divination)
 
-    ExpectedStatCount = 44
+    ExpectedStatCount = 49
     ActualStatCount = 27
 
     attr_accessor :stats, :raw_stats
@@ -20,7 +20,9 @@ module RsHighscores
     end
 
     def validate_raw_stats
-      raise "incorrect input length" unless @raw_stats.length == self.class::ExpectedStatCount
+      unless @raw_stats.length == self.class::ExpectedStatCount
+        raise "incorrect input length: expected #{self.class::ExpectedStatCount}, got #{@raw_stats.length}"
+      end
     end
 
     def parse_stats

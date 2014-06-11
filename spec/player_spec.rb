@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'spec_helper'
 
 describe RsHighscores::Player do
@@ -17,11 +18,11 @@ describe RsHighscores::Player do
 
       it "spaces being replaced" do
         lambda {
-          RsHighscores::Player.new "samb o", force: true
+          RsHighscores::Player.new "s u o m i", force: true
         }.should_not raise_error
       end
     end
-    
+
     context "errors" do
       it "invalid characters in name" do
         lambda {
