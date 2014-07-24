@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe RsHighscores::OldSchool::Player do
+describe RsHiscores::OldSchool::Player do
   context "backwards compatibility" do
     it "namespace alias" do
-      OSRS::Player.should eq(RsHighscores::OldSchool::Player)
+      OSRS::Player.should eq(RsHiscores::OldSchool::Player)
     end
   end
 
@@ -24,7 +24,7 @@ describe RsHighscores::OldSchool::Player do
 
     it "individual skill lookup" do
       @stats.stats.each do |stat|
-        stat.should be_a(RsHighscores::Stat)
+        stat.should be_a(RsHiscores::Stat)
         stat.each do |elem|
           elem.should be_a(Numeric)
         end
@@ -33,7 +33,7 @@ describe RsHighscores::OldSchool::Player do
 
     it "named stat lookup" do
       OSRS::Stats::Skills.each do |skill|
-        @stats.send(skill.to_sym).should be_a(RsHighscores::Stat)
+        @stats.send(skill.to_sym).should be_a(RsHiscores::Stat)
       end
     end
   end

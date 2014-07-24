@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'rshighscores'
+require 'rshiscores'
 
 RSpec.configure do |config|
-		config.mock_with :rspec
+  config.mock_with :rspec
 end

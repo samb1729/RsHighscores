@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-describe RsHighscores::Stats do
+describe RsHiscores::Stats do
   before :all do
-    @player = RsHighscores::Player.new "jake", force: true
-    @stats = RsHighscores::Stats.new @player.raw_stats
+    @player = RsHiscores::Player.new "jake", force: true
+    @stats = RsHiscores::Stats.new @player.raw_stats
   end
 
   describe "raw highscore validation" do
     context "valid input" do
       it "correct input length" do
         lambda {
-         @stats = RsHighscores::Stats.new @player.raw_stats
+         @stats = RsHiscores::Stats.new @player.raw_stats
         }.should_not raise_error
       end
     end
@@ -18,13 +18,13 @@ describe RsHighscores::Stats do
     context "invalid input" do
       it "incorrect input length" do
         lambda {
-          RsHighscores::Stats.new []
+          RsHiscores::Stats.new []
         }.should raise_error(/incorrect input length/)
       end
 
       it "malformed input line" do
         lambda {
-          RsHighscores::Stats.new Array.new(49) { "" }
+          RsHiscores::Stats.new Array.new(49) { "" }
         }.should raise_error("malformed raw stats")
       end
     end
@@ -32,7 +32,7 @@ describe RsHighscores::Stats do
 
   describe "stat parsing" do
     it "parsed output length" do
-     @stats.stats.length.should eq(RsHighscores::Stats::Skills.count)
+     @stats.stats.length.should eq(RsHiscores::Stats::Skills.count)
     end
 
     it "stats in groups of three" do
@@ -72,13 +72,13 @@ describe RsHighscores::Stats do
     end
 
     it "success on valid skill lookup" do
-      RsHighscores::Stats::Skills.each do |name|
-        @stats[name].should be_a(RsHighscores::Stat)
+      RsHiscores::Stats::Skills.each do |name|
+        @stats[name].should be_a(RsHiscores::Stat)
       end
     end
 
     it "skill_names output" do
-      RsHighscores::Stats::Skills.should eq(%w(Overall Attack Defence Strength
+      RsHiscores::Stats::Skills.should eq(%w(Overall Attack Defence Strength
                                       Hitpoints Ranged Prayer Magic
                                       Cooking Woodcutting Fletching Fishing
                                       Firemaking Crafting Smithing Mining
@@ -94,7 +94,7 @@ describe RsHighscores::Stats do
     end
 
     it "missing method call" do
-      RsHighscores::Stats::Skills.each do |name|
+      RsHiscores::Stats::Skills.each do |name|
         @stats.send(name.downcase).should eq(@stats[name])
       end
     end

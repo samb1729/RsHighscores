@@ -1,15 +1,14 @@
-module RsHighscores
+module RsHiscores
   class Stats
     Skills = %w(Overall Attack Defence Strength
-                  Hitpoints Ranged Prayer Magic
-                  Cooking Woodcutting Fletching Fishing
-                  Firemaking Crafting Smithing Mining
-                  Herblore Agility Thieving Slayer
-                  Farming Runecrafting Hunter Construction
-                  Summoning Dungeoneering Divination)
+                Hitpoints Ranged Prayer Magic
+                Cooking Woodcutting Fletching Fishing
+                Firemaking Crafting Smithing Mining
+                Herblore Agility Thieving Slayer
+                Farming Runecrafting Hunter Construction
+                Summoning Dungeoneering Divination)
 
-    ExpectedStatCount = 49
-    ActualStatCount = 27
+    StatCount = Skills.count
 
     attr_accessor :stats, :raw_stats
 
@@ -20,8 +19,8 @@ module RsHighscores
     end
 
     def validate_raw_stats
-      unless @raw_stats.length == self.class::ExpectedStatCount
-        raise "incorrect input length: expected #{self.class::ExpectedStatCount}, got #{@raw_stats.length}"
+      if @raw_stats.length < self.class::StatCount
+        raise "incorrect input length: expected #{self.class::StatCount}, got #{@raw_stats.length}"
       end
     end
 
@@ -29,7 +28,7 @@ module RsHighscores
       validate_raw_stats
 
       @stats = []
-      @raw_stats.take(self.class::ActualStatCount).each do |line|
+      @raw_stats.take(self.class::StatCount).each do |line|
         raise "malformed raw stats" unless line =~ /\d+,\d+,\d+/
         stat = Stat.new line.split(",").map(&:to_i)
 
@@ -46,7 +45,7 @@ module RsHighscores
 
     def method_missing name, *args
       return self[name] if Skills.include? name.to_s.capitalize
-      raise NoMethodError
+      super
     end
   end
 
