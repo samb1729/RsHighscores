@@ -18,9 +18,17 @@ module RsHiscores
       parse_stats
     end
 
+    def stat_count
+      self.class::StatCount
+    end
+
+    def skills
+      self.class::Skills
+    end
+
     def validate_raw_stats
-      if @raw_stats.length < self.class::StatCount
-        raise "incorrect input length: expected #{self.class::StatCount}, got #{@raw_stats.length}"
+      if @raw_stats.length < stat_count
+        raise "incorrect input length: expected #{stat_count}, got #{@raw_stats.length}"
       end
     end
 
@@ -28,7 +36,7 @@ module RsHiscores
       validate_raw_stats
 
       @stats = []
-      @raw_stats.take(self.class::StatCount).each do |line|
+      @raw_stats.take(stat_count).each do |line|
         raise "malformed raw stats" unless line =~ /\d+,\d+,\d+/
         stat = Stat.new line.split(",").map(&:to_i)
 
@@ -38,9 +46,9 @@ module RsHiscores
 
     def [] skill
       skill = skill.to_s.capitalize
-      raise "non-existant skill lookup" unless self.class::Skills.index(skill)
+      raise "non-existant skill lookup" unless skills.index(skill)
 
-      stats[self.class::Skills.index(skill)]
+      stats[skills.index(skill)]
     end
 
     def method_missing name, *args
